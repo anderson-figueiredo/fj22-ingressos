@@ -14,6 +14,7 @@ import br.com.caelum.ingresso.modelo.TipoDeIngresso;
 @Entity
 public class Ingresso {
 	
+
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -54,4 +55,9 @@ public class Ingresso {
 	public BigDecimal getPreco() {
 		return preco;
 	}
+	
+	public TipoDeIngresso getTipoDeIngresso() {
+		return tipoDeIngresso;
+	}
+	
 }

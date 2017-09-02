@@ -20,6 +20,7 @@ import br.com.caelum.ingresso.dao.SalaDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
 import br.com.caelum.ingresso.model.Sessao;
 import br.com.caelum.ingresso.model.form.SessaoForm;
+import br.com.caelum.ingresso.modelo.Carrinho;
 import br.com.caelum.ingresso.modelo.ImagemCapa;
 import br.com.caelum.ingresso.modelo.TipoDeIngresso;
 import br.com.caelum.ingresso.rest.ImdbClient;
@@ -39,6 +40,9 @@ public class SessaoController {
 	
 	@Autowired
     private ImdbClient imdbClient;
+	
+	@Autowired
+	private Carrinho carrinho;
 	
 	@GetMapping("/admin/sessao")
 	public ModelAndView form(@RequestParam("salaId") Integer salaId, SessaoForm form) {
@@ -82,6 +86,7 @@ public class SessaoController {
 		Optional<ImagemCapa> imagemCapa = imdbClient.request(sessao.getFilme(), ImagemCapa.class);
 		
 		modelAndView.addObject("sessao", sessao);
+		modelAndView.addObject("carrinho", carrinho);
 		modelAndView.addObject("imagemCapa", imagemCapa.orElse(new ImagemCapa()));
 		modelAndView.addObject("tipoDeIngresso", TipoDeIngresso.values());
 		
