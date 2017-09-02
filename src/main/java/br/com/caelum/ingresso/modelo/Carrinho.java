@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import br.com.caelum.ingresso.model.Compra;
 import br.com.caelum.ingresso.model.Ingresso;
 import br.com.caelum.ingresso.model.Lugar;
 
@@ -33,5 +34,9 @@ public class Carrinho {
 	
 	public BigDecimal getTotal(){
 		return ingressos.stream().map(Ingresso::getPreco).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+	}
+	
+	public Compra toCompra(){
+		return new Compra(ingressos);
 	}
 }
